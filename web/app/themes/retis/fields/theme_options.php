@@ -7,4 +7,5 @@ Container::make( 'theme_options', 'Opciones' )
   ->set_icon( 'dashicons-carrot' )
   ->add_fields( array(
     Field::make( 'image', 'retis_icon_alt', 'Logo Alternativo' ),
+    Field::make( 'image', 'footer_icon', 'Logo Alternativo' ),
   ) );
