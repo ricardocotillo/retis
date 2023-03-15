@@ -6,6 +6,6 @@ use Carbon_Fields\Field;
 Container::make( 'post_meta', 'Custom Data' )
   ->where( 'post_id', '=', get_option( 'page_on_front' ) )
   ->add_fields( [
-    Field::make('file', 'retis_certificate', 'Certificado')
+    Field::make('file', 'retis_pdf', 'Pdf a descargar')
       ->set_value_type( 'url' ),
   ] );
