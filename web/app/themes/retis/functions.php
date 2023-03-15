@@ -74,6 +74,7 @@ class StarterSite extends Site {
 		add_filter('use_block_editor_for_post', [ $this, 'retis_use_gutenberg' ], 10, 2);
 
 		add_action( 'carbon_fields_register_fields', [ $this, 'retis_carbon_fields' ] );
+		add_filter( 'render_block', [$this, 'retis_url_new_tab'], 10, 2 );
 
 		$this->register_post_types();
 
@@ -111,6 +112,16 @@ class StarterSite extends Site {
 	/** This is where you can register custom taxonomies. */
 	public function register_taxonomies() {
 
+	}
+
+	public function retis_url_new_tab($content, $block) {
+		if(!is_admin() && ! empty( $block['attrs']['className'] ) && strpos( $block['attrs']['className'], 'target_blank' ) !== false  ) {
+			$my_search='href="';
+			$my_replace='target="_blank" href="';
+			$new_content = str_replace($my_search, $my_replace, $content);
+			return $new_content;
+		}
+		return $content;
 	}
 
 	/**
