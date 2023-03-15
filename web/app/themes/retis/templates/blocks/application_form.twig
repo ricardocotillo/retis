@@ -1,7 +1,7 @@
 <form
-  action=""
-  method="post"
-  class="w-full flex flex-col gap-y-2 max-w-lg mx-auto"
+  action="{{ action }}"
+  method="GET"
+  class="flex flex-col gap-y-2 max-w-lg mx-auto"
   x-data="retisApplicationForm()"
 >
   <div x-show="step == 1" class="flex flex-col gap-y-2">
@@ -29,42 +29,74 @@
         <i class="las la-arrow-left"></i>
       </button>
     </div>
-    <label x-show="bType == 1" class="font-semibold">Precio USD</label>
-    <div x-show="bType == 1" class="flex gap-2 col-span-2">
-      <input placeholder="Min" type="number" name="price_min" id="price-min" class="w-full">
-      <input placeholder="Max" type="number" name="price_max" id="price-max" class="w-full">
-    </div>
-    <label x-show="bType == 2" class="font-semibold">Renta por mes USD</label>
-    <div x-show="bType == 2" class="flex gap-2 col-span-2">
-      <input placeholder="Min" type="number" name="rent_min" id="rent-min" class="w-full">
-      <input placeholder="Max" type="number" name="rent_max" id="rent-max" class="w-full">
-    </div>
+    
+    <template x-if="bType == 1">
+      <label class="font-semibold">Precio USD</label>
+    </template>
+    <template x-if="bType == 1">
+      <div class="flex gap-2 col-span-2">
+        <input placeholder="Min" type="number" name="price_min" id="price-min" class="w-full">
+        <input placeholder="Max" type="number" name="price_max" id="price-max" class="w-full">
+      </div>
+    </template>
+    
+    <template x-if="bType == 2">
+      <label class="font-semibold">Renta por mes USD</label>
+    </template>
+    <template x-if="bType == 2">
+      <div class="flex gap-2 col-span-2">
+        <input placeholder="Min" type="number" name="rent_min" id="rent-min" class="w-full">
+        <input placeholder="Max" type="number" name="rent_max" id="rent-max" class="w-full">
+      </div>
+    </template>
+    
     <label class="font-semibold">Tamaño (Sq. ft)</label>
     <div class="flex gap-2 col-span-2">
       <input placeholder="Min" type="number" name="size_min" id="size-min" class="w-full">
       <input placeholder="Max" type="number" name="size_max" id="size-max" class="w-full">
     </div>
-    <label x-show="pType == 1" class="font-semibold">Bedrooms</label>
-    <div x-show="pType == 1" class="flex gap-2 col-span-2">
-      <input placeholder="Min" type="number" name="bedrooms_min" id="bedrooms-min" class="w-full">
-      <input placeholder="Max" type="number" name="bedrooms_max" id="beedrooms-max" class="w-full">
-    </div>
-    <label x-show="pType == 1" class="font-semibold">Garages</label>
-    <div x-show="pType == 1" class="flex gap-2 col-span-2">
-      <input placeholder="Min" type="number" name="garages_min" id="garages-min" class="w-full">
-      <input placeholder="Max" type="number" name="garages_max" id="garages-max" class="w-full">
-    </div>
-    <label x-show="pType == 1" class="font-semibold">Pool</label>
-    <div x-show="pType == 1" class="flex gap-2 col-span-2 justify-between">
-      <label for="pool-yes">Yes <input type="radio" name="pool" id="pool-yes" value="yes" x-model="pool"></label>
-      <label for="pool-no">No <input type="radio" name="pool" id="pool-no" value="no" x-model="pool"></label>
-      <label for="pool-either">Either <input type="radio" name="pool" id="pool-either" value="either" x-model="pool"></label>
-    </div>
-    <label x-show="pType == 1" class="font-semibold">Stories</label>
-    <div x-show="pType == 1" class="flex gap-2 col-span-2">
-      <input placeholder="Min" type="number" name="stories_min" id="stories-min" class="w-full">
-      <input placeholder="Max" type="number" name="stories_max" id="stories-max" class="w-full">
-    </div>
-    <button class="button bg-primary text-white col-span-3">Aplicar</button>
+    
+    <template x-if="pType == 1">
+      <label class="font-semibold">Bedrooms</label>
+    </template>
+    <template x-if="pType == 1">
+      <div class="flex gap-2 col-span-2">
+        <input placeholder="Min" type="number" name="bedrooms_min" id="bedrooms-min" class="w-full">
+        <input placeholder="Max" type="number" name="bedrooms_max" id="beedrooms-max" class="w-full">
+      </div>
+    </template>
+    
+    <template x-if="pType == 1">
+      <label class="font-semibold">Garages</label>
+    </template>
+    <template x-if="pType == 1">
+      <div class="flex gap-2 col-span-2">
+        <input placeholder="Min" type="number" name="garages_min" id="garages-min" class="w-full">
+        <input placeholder="Max" type="number" name="garages_max" id="garages-max" class="w-full">
+      </div>
+    </template>
+    
+    <template x-if="pType == 1">
+      <label class="font-semibold">Pool</label>
+    </template>
+    <template x-if="pType == 1">
+      <div class="flex gap-2 col-span-2 justify-between">
+        <label for="pool-yes">Yes <input type="radio" name="pool" id="pool-yes" value="yes" x-model="pool"></label>
+        <label for="pool-no">No <input type="radio" name="pool" id="pool-no" value="no" x-model="pool"></label>
+        <label for="pool-either">Either <input type="radio" name="pool" id="pool-either" value="either" x-model="pool"></label>
+      </div>
+    </template>
+    
+    <template x-if="pType == 1">
+      <label x-show="pType == 1" class="font-semibold">Stories</label>
+    </template>
+    <template x-if="pType == 1">
+      <div class="flex gap-2 col-span-2">
+        <input placeholder="Min" type="number" name="stories_min" id="stories-min" class="w-full">
+        <input placeholder="Max" type="number" name="stories_max" id="stories-max" class="w-full">
+      </div>
+    </template>
+
+    <button class="button bg-primary text-white col-span-3">Buscar</button>
   </div>
 </form>
