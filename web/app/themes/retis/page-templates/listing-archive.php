@@ -18,6 +18,14 @@ function get_pool_value($s) {
   }
 }
 
+function get_btype_value($s) {
+  return $s == 1 ? ['comprar'] : ($s == 2 ? ['rentar'] : ['comprar', 'rentar']);
+}
+
+function get_ptype_value($s) {
+  return $s == 1 ? ['residencial'] : ($s == 2 ? ['comercial'] : ['residencial', 'comercial']);
+}
+
 $templates = array( 'listing-archive.twig' );
 
 $context = Timber::context();
@@ -52,30 +60,26 @@ $garages_min = isset($_GET['garages_min']) ? $_GET['garages_min'] : false;
 $garages_max = isset($_GET['garages_max']) ? $_GET['garages_max'] : false;
 $stories_min = isset($_GET['stories_min']) ? $_GET['stories_min'] : false;
 $stories_max = isset($_GET['stories_max']) ? $_GET['stories_max'] : false;
-$pool = isset($_GET['pool']) ? get_pool_value($_GET['pool']) : ['yes', ''];
+$pool = isset($_GET['pool']) ? get_pool_value($_GET['pool']) : false;
 
 $tax_query = [
   'relation'  => 'AND',
   [
     'taxonomy'  => 'listing_cat',
     'field'     => 'slug',
-    'terms'     => $business_type == 1 ? 'comprar' : ($business_type == 2 ? 'rentar' : ['comprar', 'rentar']),
+    'terms'     => array_merge(get_btype_value($business_type), get_ptype_value($property_type)),
   ],
-  [
-    'taxonomy'  => 'listing_cat',
-    'field'     => 'slug',
-    'terms'     => $property_type == 1 ? 'residencial' : ($property_type == 2 ? 'comercial' : ['residencial', 'comercial']),
-  ]
 ];
 
-$meta_query = [
-  'relation'  => 'AND',
-  [
+$meta_query = [];
+
+if ($pool) {
+  array_push($meta_query, [
     'key' => 'pool',
     'value' => $pool,
     'compare' => 'IN'
-  ]
-];
+  ]);
+}
 
 if ($price_min && $price_max) {
   array_push($meta_query, [
@@ -108,7 +112,6 @@ if ($size_min && $size_max) {
     'compare' => 'BETWEEN',
   ]);
 } else if ($size_min) {
-  var_dump($size_min);
   array_push($meta_query, [
     'key'     => 'sq_ft',
     'value'   => $size_min,
@@ -191,6 +194,10 @@ if ($stories_min && $stories_max) {
     'type'    => 'numeric',
     'compare' => '<=',
   ]);
+}
+
+if (count($meta_query) > 1) {
+  $meta_query['relation'] = 'AND';
 }
 
 $context['posts'] = new PostQuery([
