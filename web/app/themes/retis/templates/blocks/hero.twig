@@ -1,0 +1,21 @@
+<style>
+  .retis-hero::before {
+    content: "";
+    background-image: url({{ Image(fields.bg).src }});
+  }
+</style>
+<section class="pt-36 pb-52 relative retis-hero before:z-0 before:inset-0 before:opacity-10 before:absolute bg-slate-900 before:bg-center before:bg-cover before:bg-no-repeat px-2 xl:px-0">
+  <div class="flex container mx-auto z-10 relative">
+    <div class="w-full xl:w-1/2">
+      <h1 class="text-white mb-4">{{ fields.heading }}</h1>
+      <p class="text-white py-8 border-t border-t-amber-500">{{ fields.subtitle }}</p>
+      <div x-data="{}" class="gap-2 flex">
+        <button @click="fire('application', 1)" class="button button-primary">Comprar</button>
+        <button @click="fire('application', 2)" class="button button-secondary">Rentar</button>
+      </div>
+    </div>
+    <div class="w-1/2 hidden xl:block"></div>
+  </div>
+  <svg class="w-full h-28 absolute bottom-0 left-0 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" preserveAspectRatio="none"><path d="M1200 360H0V0l1200 348z"></path></svg>
+  {# <div class="absolute bottom-0 w-0 h-0 border-b-100 border-b-white border-r-screen border-r-transparent"></div> #}
+</section>

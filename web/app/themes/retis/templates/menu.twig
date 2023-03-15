@@ -1,0 +1,16 @@
+{% if menu %}
+	<ul class="flex gap-8 justify-end font-semibold tracking-wider">
+    {# {% for item in items %}
+      <li class="{{ item.classes | join(' ') }}">
+        <a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
+        {% include "menu.twig" with {'items': item.children} %}
+      </li>
+    {% endfor %} #}
+    <li>
+      <a href="#"><i class="las la-phone text-2xl"></i> <span class="hidden xl:inline">Teléfono</span></a>
+    </li>
+    <li>
+      <a href="#"><i class="lab la-whatsapp text-2xl"></i> <span class="hidden xl:inline">Contacto</span></a>
+    </li>
+	</ul>
+{% endif %}

@@ -1,0 +1,70 @@
+<form
+  action=""
+  method="post"
+  class="w-full flex flex-col gap-y-2 max-w-lg mx-auto"
+  x-data="retisApplicationForm()"
+>
+  <div x-show="step == 1" class="flex flex-col gap-y-2">
+    <select x-model.number="bType" class="w-full" name="business_type" id="business-type">
+      <option value="0" disabled>¿Qué buscas...?</option>
+      <option value="1">Comprar</option>
+      <option value="2">Rentar</option>
+    </select>
+    <select
+      x-show="[1, 2].includes(bType)"
+      x-model.number="pType"
+      class="w-full"
+      name="property_type"
+      id="property-type"
+      @change="step = 2"
+    >
+      <option value="0" disabled>¿Qué tipo de propiedad buscas...?</option>
+      <option value="1">Residencial</option>
+      <option value="2">Comercial</option>
+    </select>
+  </div>
+  <div x-show="step == 2" class="grid grid-cols-3 grid-flow-row items-center gap-2">
+    <div class="col-span-3 flex justify-center">
+      <button @click="step = 1" type="button" class="button">
+        <i class="las la-arrow-left"></i>
+      </button>
+    </div>
+    <label x-show="bType == 1" class="font-semibold">Precio USD</label>
+    <div x-show="bType == 1" class="flex gap-2 col-span-2">
+      <input placeholder="Min" type="number" name="price_min" id="price-min" class="w-full">
+      <input placeholder="Max" type="number" name="price_max" id="price-max" class="w-full">
+    </div>
+    <label x-show="bType == 2" class="font-semibold">Renta por mes USD</label>
+    <div x-show="bType == 2" class="flex gap-2 col-span-2">
+      <input placeholder="Min" type="number" name="rent_min" id="rent-min" class="w-full">
+      <input placeholder="Max" type="number" name="rent_max" id="rent-max" class="w-full">
+    </div>
+    <label class="font-semibold">Tamaño (Sq. ft)</label>
+    <div class="flex gap-2 col-span-2">
+      <input placeholder="Min" type="number" name="size_min" id="size-min" class="w-full">
+      <input placeholder="Max" type="number" name="size_max" id="size-max" class="w-full">
+    </div>
+    <label x-show="pType == 1" class="font-semibold">Bedrooms</label>
+    <div x-show="pType == 1" class="flex gap-2 col-span-2">
+      <input placeholder="Min" type="number" name="bedrooms_min" id="bedrooms-min" class="w-full">
+      <input placeholder="Max" type="number" name="bedrooms_max" id="beedrooms-max" class="w-full">
+    </div>
+    <label x-show="pType == 1" class="font-semibold">Garages</label>
+    <div x-show="pType == 1" class="flex gap-2 col-span-2">
+      <input placeholder="Min" type="number" name="garages_min" id="garages-min" class="w-full">
+      <input placeholder="Max" type="number" name="garages_max" id="garages-max" class="w-full">
+    </div>
+    <label x-show="pType == 1" class="font-semibold">Pool</label>
+    <div x-show="pType == 1" class="flex gap-2 col-span-2 justify-between">
+      <label for="pool-yes">Yes <input type="radio" name="pool" id="pool-yes" value="yes" x-model="pool"></label>
+      <label for="pool-no">No <input type="radio" name="pool" id="pool-no" value="no" x-model="pool"></label>
+      <label for="pool-either">Either <input type="radio" name="pool" id="pool-either" value="either" x-model="pool"></label>
+    </div>
+    <label x-show="pType == 1" class="font-semibold">Stories</label>
+    <div x-show="pType == 1" class="flex gap-2 col-span-2">
+      <input placeholder="Min" type="number" name="stories_min" id="stories-min" class="w-full">
+      <input placeholder="Max" type="number" name="stories_max" id="stories-max" class="w-full">
+    </div>
+    <button class="button bg-primary text-white col-span-3">Aplicar</button>
+  </div>
+</form>
