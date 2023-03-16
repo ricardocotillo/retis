@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69160655b72d5c7c6ed4735c1e64b958",
+    "content-hash": "41a47891e6ea3b5e6fb20b8c18faa072",
     "packages": [
         {
             "name": "composer/installers",
@@ -1151,6 +1151,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/generateblocks/"
+        },
+        {
+            "name": "wpackagist-plugin/icon-block",
+            "version": "1.5.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/icon-block/",
+                "reference": "tags/1.5.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/icon-block.1.5.0.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/icon-block/"
         },
         {
             "name": "wpackagist-theme/twentytwentythree",
