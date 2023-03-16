@@ -14,12 +14,18 @@
 					{# <h1 class="hdr-logo" role="banner">
 						<a class="hdr-logo-link" href="{{site.url}}" rel="home">{{site.name}}</a>
 					</h1> #}
-					<a class="hdr-logo-link" href="{{site.url}}" rel="home">
-            <picture>
-              <source media="(min-width: 1024px)" srcset="{{ Image(icon_alt).src|resize(80) }}">
-              <img src="{{ Image(icon_alt).src|resize(50) }}" alt="site logo" />
-            </picture>
-          </a>
+					<div class="flex gap-4 items-center">
+            <a class="hdr-logo-link" href="{{site.url}}" rel="home">
+              <picture>
+                <source media="(min-width: 1024px)" srcset="{{ Image(icon_alt).src|resize(80) }}">
+                <img src="{{ Image(icon_alt).src|resize(50) }}" alt="site logo" />
+              </picture>
+            </a>
+            <div>
+              <p class="text-3xl">Guillermo A. Retis</p>
+              <p>International Real Estate Agent, SFR</p>
+            </div>
+          </div>
 					<nav id="nav-main" class="nav-main flex-grow" role="navigation">
 						{% include "menu.twig" with {'items': menu.get_items} %}
 					</nav><!-- #nav -->
