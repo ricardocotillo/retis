@@ -90,24 +90,25 @@ class StarterSite extends Site {
 			'slug'		=> 'listing_cat',
 		]);
 
-		$city = new Taxonomy([
-			'name'		=> 'city',
-			'singular'	=> 'City',
-			'plural'	=> 'Cities',
-			'slug'		=> 'city',
+		$location = new Taxonomy([
+			'name'		=> 'location',
+			'singular'	=> 'Location',
+			'plural'	=> 'Locations',
+			'slug'		=> 'location',
 		]);
 
 		$listing_cat->register();
-		$city->register();
+		$location->register();
 
 		$listing = new PostType('listing');
 		$listing->icon('dashicons-list-view');
 		$listing->options([
 			'supports'	=> [ 'title', 'editor', 'thumbnail' ],
 			'show_in_rest' => true,
+			'has_archive' => true,
 		]);
 		$listing->taxonomy( 'listing_cat' );
-		$listing->taxonomy( 'city' );
+		$listing->taxonomy( 'location' );
 		$listing->register();
 	}
 	/** This is where you can register custom taxonomies. */

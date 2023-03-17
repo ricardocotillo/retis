@@ -17,7 +17,7 @@
 use Timber\Timber;
 use Timber\PostQuery;
 
-$templates = array( 'archive.twig', 'index.twig' );
+$templates = array( 'archive-listing.twig' );
 
 $context = Timber::context();
 $context['title'] = 'Archive';
@@ -36,6 +36,7 @@ if ( is_day() ) {
 	$context['title'] = post_type_archive_title( '', false );
 	array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
 }
+
 $context['posts'] = new PostQuery();
 
 Timber::render( $templates, $context );
