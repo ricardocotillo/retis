@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "81e56ababf0f805037caf9f9e50732db",
+    "content-hash": "ec2c8df1da1dcb7860096fc05b4c109e",
     "packages": [
         {
             "name": "composer/installers",
@@ -337,6 +337,25 @@
                 }
             ],
             "time": "2022-07-30T15:51:26+00:00"
+        },
+        {
+            "name": "rcotillo/admin-columns-pro",
+            "version": "6.1.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://portafolio.cotillo.tech/satispress/admin-columns-pro/6.1.2",
+                "shasum": "06d295936a7d7676bc5fa803a5dbe24ea5bfae6e"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "authors": {
+                "name": "AdminColumns.com",
+                "homepage": "https://www.admincolumns.com"
+            },
+            "description": "Customize columns on the administration screens for post(types), users and other content. Filter and sort content, and edit posts directly from the posts overview. All via an intuitive, easy-to-use drag-and-drop interface.",
+            "homepage": "https://www.admincolumns.com"
         },
         {
             "name": "roots/bedrock-autoloader",
