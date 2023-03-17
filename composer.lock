@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec2c8df1da1dcb7860096fc05b4c109e",
+    "content-hash": "1e43d472f0fad306b57304c3705b0291",
     "packages": [
         {
             "name": "composer/installers",
@@ -1188,6 +1188,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/icon-block/"
+        },
+        {
+            "name": "wpackagist-plugin/modal-block",
+            "version": "2.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/modal-block/",
+                "reference": "tags/2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/modal-block.2.1.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/modal-block/"
         },
         {
             "name": "wpackagist-theme/twentytwentythree",

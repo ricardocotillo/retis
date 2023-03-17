@@ -103,9 +103,9 @@ class StarterSite extends Site {
 		$listing = new PostType('listing');
 		$listing->icon('dashicons-list-view');
 		$listing->options([
-			'supports'	=> [ 'title', 'editor', 'thumbnail' ],
-			'show_in_rest' => true,
-			'has_archive' => true,
+			'supports'		=> [ 'title', 'editor', 'thumbnail' ],
+			'show_in_rest' 	=> true,
+			'has_archive' 	=> true,
 		]);
 		$listing->taxonomy( 'listing_cat' );
 		$listing->taxonomy( 'location' );
