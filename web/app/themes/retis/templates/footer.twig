@@ -6,24 +6,19 @@
       alt="retis real people"
     />
   </div>
-  <div class="xl:w-1/4 flex flex-col gap-1 xl:border-r border-white xl:pl-4">
-    <p>NMLS 367268</p>
-    <p>Licensed in Nevada, California and Arizona</p>
-    <p>SecurityNational Mortgage, Inc.</p>
-    <P>NMLS 3116</P>
-    <p>2635 St Rose Parkway Suite D-100</p>
-    <p>Henderson, NV 89052 </p>
+  <div class="xl:w-1/4 xl:border-r border-white xl:pl-4">
+    {{ address }}
   </div>
   <div class="xl:w-1/4 flex flex-col gap-1 xl:border-r border-r-white xl:pl-4">
-    <a href="tel:7024806463"><i class="las la-phone"></i> 702.480.6463</a>
-    <p>Direct: 702.487.5626</p>
-    <p>Fax: 702.920.8275</p>
-    <a href="mailto:gretis@cox.net"><i class="las la-envelope"></i> gretis@cox.net</a>
+    <a href="tel:{{ fn('str_replace', ' ', '', phone) }}"><i class="las la-phone"></i> {{ phone }}</a>
+    <p>Direct: {{ phone_direct }}</p>
+    <p>Fax: {{ fax }}</p>
+    <a href="mailto:gretis@cox.net"><i class="las la-envelope"></i> {{ email }}</a>
   </div>
   <div class="xl:w-1/4 flex flex-col gap-1 xl:pl-4">
-    <a href="https://wa.me/17024875626"><i class="lab la-whatsapp"></i> Contacto</a>
-    <a href="#">Políticas de privacidad</a>
-    <a href="#">Términos de servicio</a>
+    <a href="https://wa.me/1{{ fn('str_replace', ' ', '', phone_direct) }}"><i class="lab la-whatsapp"></i> Contacto</a>
+    <a href="{{ fn('get_privacy_policy_url') }}">Políticas de privacidad</a>
+    <a href="{{ terms_link }}">Términos de servicio</a>
   </div>
   <p class="w-full flex-shrink-0 text-center">Copyright {{"now"|date('Y')}}</p>
 </div>

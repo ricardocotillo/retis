@@ -14,6 +14,7 @@ use Timber\Site;
 use Carbon_Fields\Carbon_Fields;
 use PostTypes\PostType;
 use PostTypes\Taxonomy;
+use Timber\Post;
 
 /**
  * If you are installing Timber as a Composer dependency in your theme, you'll need this block
@@ -138,9 +139,17 @@ class StarterSite extends Site {
 	 * @param string $context context['this'] Being the Twig's {{ this }}.
 	 */
 	public function add_to_context( $context ) {
+		$terms = carbon_get_theme_option('retis_terms');
 		$context['menu']  = new Menu();
 		$context['site']  = $this;
 		$context['icon_alt'] = carbon_get_theme_option('retis_icon_alt');
+		$context['address'] = carbon_get_theme_option('retis_address');
+		$context['phone'] = carbon_get_theme_option('retis_phone');
+		$context['phone_direct'] = carbon_get_theme_option('retis_phone_direct');
+		$context['fax'] = carbon_get_theme_option('retis_fax');
+		$context['whatsapp'] = carbon_get_theme_option('retis_whatsapp');
+		$context['email'] = carbon_get_theme_option('retis_email');
+		$context['terms_link'] = count($terms) ? (new Post($terms[0]['id']))->link() : '#';
 		return $context;
 	}
 
