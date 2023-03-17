@@ -12,7 +12,7 @@
             <span>Pisos: {{ p.meta('_stories') }}</span>
             <span>Cocheras: {{ p.meta('_garages') }}</span>
           </div>
-          <button class="button bg-light w-full text-base">Contactar para más detalles</button>
+          <a href="tel:{{ fn('str_replace', ' ', '', phone) }}" class="button bg-light w-full text-base">Contactar para más detalles</a>
         </div>
       {% endfor %}
     </div>
