@@ -1,16 +1,10 @@
 {% if menu %}
 	<ul class="flex gap-8 justify-end font-semibold tracking-wider">
-    {# {% for item in items %}
+    {% for item in items %}
       <li class="{{ item.classes | join(' ') }}">
-        <a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
-        {% include "menu.twig" with {'items': item.children} %}
+        <a target="{{ item.target }}" href="{{ item.link }}" class="flex items-center gap-1">{{ item.title }}</a>
+        {# {% include "menu.twig" with {'items': item.children} %} #}
       </li>
-    {% endfor %} #}
-    <li>
-      <a href="tel:{{ fn('str_replace', ' ', '', phone) }}"><i class="las la-phone text-2xl"></i> <span class="hidden xl:inline">Teléfono</span></a>
-    </li>
-    <li>
-      <a href="{{ whatsapp }}"><i class="lab la-whatsapp text-2xl"></i> <span class="hidden xl:inline">Contacto</span></a>
-    </li>
+    {% endfor %}
 	</ul>
 {% endif %}
