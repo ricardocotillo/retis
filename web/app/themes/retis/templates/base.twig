@@ -48,9 +48,10 @@
 		</section>
 
 		{% block footer %}
-			<footer id="footer" class="px-2 xl:px-0 bg-primary text-white">
+			{{ footer.content }}
+			{# <footer id="footer" class="px-2 xl:px-0 bg-primary text-white">
 				{% include 'footer.twig' %}
-			</footer>
+			</footer> #}
 			{{ function('wp_footer') }}
 		{% endblock %}
 	</body>

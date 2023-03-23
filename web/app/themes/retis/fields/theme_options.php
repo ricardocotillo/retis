@@ -30,4 +30,12 @@ Container::make( 'theme_options', 'Opciones' )
             'post_type' => 'page',
           )
       ) ),
+    Field::make( 'association', 'retis_footer', 'Footer' )
+      ->set_max( 1 )
+      ->set_types( array(
+          array(
+            'type'      => 'post',
+            'post_type' => 'section',
+          )
+      ) ),
   ) );

@@ -110,6 +110,14 @@ class StarterSite extends Site {
 		$listing->taxonomy( 'listing_cat' );
 		$listing->taxonomy( 'location' );
 		$listing->register();
+
+		$section = new PostType('section');
+		$section->icon('dashicons-nametag');
+		$section->options([
+			'supports'		=> ['title', 'editor'],
+			'show_in_rest'	=> true,
+		]);
+		$section->register();
 	}
 	/** This is where you can register custom taxonomies. */
 	public function register_taxonomies() {
@@ -141,6 +149,7 @@ class StarterSite extends Site {
 	 */
 	public function add_to_context( $context ) {
 		$terms = carbon_get_theme_option('retis_terms');
+		$footer = carbon_get_theme_option('retis_footer');
 		$context['menu']  = new Menu();
 		$context['site']  = $this;
 		$context['icon_alt'] = carbon_get_theme_option('retis_icon_alt');
@@ -151,6 +160,7 @@ class StarterSite extends Site {
 		$context['whatsapp'] = carbon_get_theme_option('retis_whatsapp');
 		$context['email'] = carbon_get_theme_option('retis_email');
 		$context['terms_link'] = count($terms) ? (new Post($terms[0]['id']))->link() : '#';
+		$context['footer'] = count($footer) ? (new Post($footer[0]['id'])) : false;
 		return $context;
 	}
 
