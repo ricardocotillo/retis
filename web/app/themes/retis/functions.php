@@ -137,6 +137,13 @@ class StarterSite extends Site {
 			$c = str_replace($s, $r, $content);
 			return $c;
 		}
+
+		if ( !is_admin() && ! empty( $block['attrs']['className'] ) && strpos( $block['attrs']['className'], 'video-background' ) !== false ) {
+			$s = '<div class="gb-container gb-container-7ede43e9 video-background">';
+			$r = '<div class="gb-container gb-container-7ede43e9 video-background"><video id="video-bg" autoplay muted loop><source src="https://retis.cotillo.tech/app/uploads/2023/04/final.mp4" type="video/mp4"></video>';
+			$c = str_replace($s, $r, $content);
+			return $c;
+		}
 		return $content;
 	}
 
