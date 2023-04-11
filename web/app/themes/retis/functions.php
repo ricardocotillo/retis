@@ -125,11 +125,17 @@ class StarterSite extends Site {
 	}
 
 	public function retis_url_new_tab($content, $block) {
-		if(!is_admin() && ! empty( $block['attrs']['className'] ) && strpos( $block['attrs']['className'], 'target_blank' ) !== false  ) {
+		if( !is_admin() && ! empty( $block['attrs']['className'] ) && strpos( $block['attrs']['className'], 'target_blank' ) !== false  ) {
 			$my_search='href="';
 			$my_replace='target="_blank" href="';
 			$new_content = str_replace($my_search, $my_replace, $content);
 			return $new_content;
+		}
+		if ( !is_admin() && ! empty( $block['attrs']['className'] ) && strpos( $block['attrs']['className'], 'rellax' ) !== false ) {
+			$s = 'rellax"';
+			$r = 'rellax" data-rellax-speed="10"';
+			$c = str_replace($s, $r, $content);
+			return $c;
 		}
 		return $content;
 	}

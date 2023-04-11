@@ -1,5 +1,6 @@
 import './style.css'
 import Alpine from 'alpinejs'
+import Rellax from 'rellax'
 
 const fire = (eventName, detail) => {
   const event = new CustomEvent(eventName, {detail})
@@ -32,3 +33,5 @@ window.retisApplicationForm = () => {
 }
 
 Alpine.start()
+
+const rellax = new Rellax('.rellax')
