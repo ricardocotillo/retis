@@ -133,7 +133,7 @@ class StarterSite extends Site {
 		}
 		if ( !is_admin() && ! empty( $block['attrs']['className'] ) && strpos( $block['attrs']['className'], 'rellax' ) !== false ) {
 			$s = 'rellax"';
-			$r = 'rellax" data-rellax-mobile-speed="0" data-rellax-tablet-speed="0" data-rellax-desktop-speed="10"';
+			$r = 'rellax" data-rellax-xs-speed="0" data-rellax-mobile-speed="0" data-rellax-tablet-speed="0" data-rellax-desktop-speed="10"';
 			$c = str_replace($s, $r, $content);
 			return $c;
 		}
