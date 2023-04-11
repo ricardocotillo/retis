@@ -35,3 +35,8 @@ window.retisApplicationForm = () => {
 Alpine.start()
 
 const rellax = new Rellax('.rellax')
+
+setTimeout(() => {
+  const b = document.querySelector('.banner-text')
+  b.classList.add('fadein')
+}, 3000)
