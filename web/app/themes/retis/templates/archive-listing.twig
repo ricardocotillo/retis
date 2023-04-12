@@ -1,10 +1,13 @@
 {% extends "base.twig" %}
 {% block content %}
-  <div class="py-16 px-2 xl:px-0 bg-light">
+  <div x-data="gallery" class="py-16 px-2 xl:px-0 bg-light">
     <div class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 container mx-auto">
       {% for p in posts %}
         <div class="p-4 flex flex-col gap-2 bg-white rounded-sm">
-          <img class="w-full" src="{{ p.thumbnail.src|resize(300) }}" alt="listing featured image" />
+          <div {{ fn(['StarterSite', 'cursor'], p) }}>
+            <img class="w-full" src="{{ p.thumbnail.src|resize(300) }}" alt="listing featured image" />
+            {{ fn(['StarterSite', 'gallery'], p) }}
+          </div>
           <h5>{{ p.post_title }}</h5>
           <p>{{ p.meta('_sq_ft') }} m2</p>
           <div class="flex gap-2">
@@ -16,5 +19,7 @@
         </div>
       {% endfor %}
     </div>
+    <dialog x-ref="popup" class="p-0 bg-slate-900 popup-gallery">
+    </dialog>
   </div>
 {% endblock %}

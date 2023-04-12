@@ -1,0 +1,11 @@
+<section class="splide max-w-4xl">
+  <div class="splide__track">
+		<ul class="splide__list">
+      {% for g in gallery %}
+        <li class="splide__slide">
+          <img class="w-full aspect-video object-contain object-center" src="{{ Image(g.image).src }}" alt="slide image" />
+        </li>
+      {% endfor %}
+		</ul>
+  </div>
+</section>

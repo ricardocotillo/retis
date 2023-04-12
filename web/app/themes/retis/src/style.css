@@ -33,4 +33,10 @@ h6 {
   @apply px-6 py-2 text-xl uppercase tracking-wider;
 }
 
+[x-cloak] { display: none !important; }
+
+.popup-gallery::backdrop {
+  @apply bg-slate-900 bg-opacity-95
+}
+
 @tailwind utilities;

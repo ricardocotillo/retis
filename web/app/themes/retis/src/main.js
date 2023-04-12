@@ -1,6 +1,8 @@
 import './style.css'
+import '@splidejs/splide/css'
 import Alpine from 'alpinejs'
 import Rellax from 'rellax'
+import Splide from '@splidejs/splide'
 
 const fire = (eventName, detail) => {
   const event = new CustomEvent(eventName, {detail})
@@ -32,11 +34,29 @@ window.retisApplicationForm = () => {
   }
 }
 
+window.gallery = () => {
+  return {
+    splide: null,
+    async onClick(id) {
+      if (this.splide) this.splide.destroy(true)
+      const res = await fetch(`/listing_content/${id}/`)
+      const b = await res.text()
+      this.$refs.popup.innerHTML = b
+      this.$refs.popup.showModal()
+      this.splide = new Splide('.splide', {
+        type: 'loop',
+        perPage: 1,
+      })
+      this.splide.mount()
+    }
+  }
+}
+
 Alpine.start()
 
-const rellax = new Rellax('.rellax')
+new Rellax('.rellax')
 
 setTimeout(() => {
   const b = document.querySelector('.banner-text')
-  b.classList.add('fadein')
+  b?.classList.add('fadein')
 }, 3000)

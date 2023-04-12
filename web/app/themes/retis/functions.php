@@ -15,6 +15,10 @@ use Carbon_Fields\Carbon_Fields;
 use PostTypes\PostType;
 use PostTypes\Taxonomy;
 use Timber\Post;
+use Hexbit\Router\WordPress\Router;
+use Hexbit\Router\RouteParams;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * If you are installing Timber as a Composer dependency in your theme, you'll need this block
@@ -71,15 +75,26 @@ class StarterSite extends Site {
 		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
 		add_filter( 'timber/twig', array( $this, 'add_to_twig' ) );
 		// add_action( 'init', array( $this, 'register_post_types' ) );
-		add_action( 'init', array( $this, 'register_taxonomies' ) );
+		add_action( 'init', array( $this, 'retis_init' ) );
 		add_filter('use_block_editor_for_post', [ $this, 'retis_use_gutenberg' ], 10, 2);
 
 		add_action( 'carbon_fields_register_fields', [ $this, 'retis_carbon_fields' ] );
 		add_filter( 'render_block', [$this, 'retis_url_new_tab'], 10, 2 );
 
 		$this->register_post_types();
+		$this->retis_routes();
 
 		parent::__construct();
+	}
+
+	public function retis_routes() {
+		Router::map(['GET'], 'listing_content/{id}/', function (RouteParams $params, Request $request) {
+			$context = Timber::context();
+			$post = new Post($params->id);
+			$gallery = carbon_get_post_meta($post->ID, 'retis_gallery');
+			$context['gallery'] = $gallery;
+			Timber::render('partial/gallery.twig', $context);
+		});
 	}
 	/** This is where you can register custom post types. */
 	public function register_post_types() {
@@ -120,8 +135,8 @@ class StarterSite extends Site {
 		$section->register();
 	}
 	/** This is where you can register custom taxonomies. */
-	public function register_taxonomies() {
-
+	public function retis_init() {
+		Router::init();
 	}
 
 	public function retis_url_new_tab($content, $block) {
@@ -257,6 +272,24 @@ class StarterSite extends Site {
 		echo $dist_uri . '/' . $manifest[$name]['file'];
 	}
 
+	/**
+	 * @param Post $post
+	 */
+	public function gallery( $post ) {
+		$gallery = carbon_get_post_meta($post->ID, 'retis_gallery');
+		if (count($gallery)) {
+			Timber::render('partial/gallery-icon.twig');
+		}
+	}
+
+	/**
+	 * @param Post $post
+	 */
+	public function cursor( $post ) {
+		$gallery = carbon_get_post_meta($post->ID, 'retis_gallery');
+		echo count($gallery) ? '@click="onClick(' . $post->ID . ')" class="relative group cursor-pointer"' : 'class="relative group"';
+	}
+
 	/** This is where you can add your own functions to twig.
 	 *
 	 * @param object $twig get extension.
@@ -265,6 +298,8 @@ class StarterSite extends Site {
 		$twig->addExtension( new Twig\Extension\StringLoaderExtension() );
 		$twig->addFilter( new Twig\TwigFilter( 'myfoo', array( $this, 'myfoo' ) ) );
 		$twig->addFunction( new \Timber\Twig_Function( 'vite', array( $this, 'vite' ) ) );
+		$twig->addFunction( new \Timber\Twig_Function( 'gallery', array( $this, 'gallery' ) ) );
+		$twig->addFunction( new \Timber\Twig_Function( 'cursor', array( $this, 'cursor' ) ) );
 		return $twig;
 	}
 
