@@ -155,7 +155,7 @@ class StarterSite extends Site {
 
 		if ( !is_admin() && ! empty( $block['attrs']['className'] ) && strpos( $block['attrs']['className'], 'video-background' ) !== false ) {
 			$s = '<div class="gb-container gb-container-7ede43e9 video-background">';
-			$r = '<div class="gb-container gb-container-7ede43e9 video-background"><video id="video-bg" autoplay muted loop><source src="https://retis.cotillo.tech/app/uploads/2023/04/bg.mp4" type="video/mp4"></video>';
+			$r = '<div class="gb-container gb-container-7ede43e9 video-background"><video id="video-bg" autoplay muted loop><source src="/app/uploads/2023/04/bg.mp4" type="video/mp4"></video>';
 			$c = str_replace($s, $r, $content);
 			return $c;
 		}
