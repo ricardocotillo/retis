@@ -5,9 +5,13 @@ use Carbon_Fields\Field;
 Container::make( 'post_meta', 'Especificaciones' )
   ->where('post_type', '=', 'listing')
   ->add_fields([
+    Field::make('text', 'city'),
+    Field::make('text', 'type'),
     Field::make('text', 'price')
       ->set_attribute('type', 'number'),
-    Field::make('text', 'sq_ft', 'Square feet')
+    Field::make('text', 'sq_ft', 'Area')
+      ->set_attribute('type', 'number'),
+    Field::make('text', 'built_sq_ft', 'Built Area')
       ->set_attribute('type', 'number'),
     Field::make('text', 'bedrooms')
       ->set_attribute('type', 'number'),

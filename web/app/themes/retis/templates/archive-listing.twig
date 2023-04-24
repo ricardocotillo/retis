@@ -1,21 +1,29 @@
 {% extends "base.twig" %}
 {% block content %}
   <div x-data="gallery" class="py-16 px-2 xl:px-0 bg-light">
-    <div class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 container mx-auto">
+    <div class="grid grid-cols-1 gap-5 md:grid-cols-2 container mx-auto">
       {% for p in posts %}
-        <div class="p-4 flex flex-col gap-2 bg-white rounded-sm">
-          <div {{ fn(['StarterSite', 'cursor'], p) }}>
-            <img class="w-full" src="{{ p.thumbnail.src|resize(300) }}" alt="listing featured image" />
-            {{ fn(['StarterSite', 'gallery'], p) }}
+        <div class="p-4 flex gap-2 bg-white rounded-sm">
+          <div class="flex flex-col gap-2">
+            <div {{ fn(['StarterSite', 'cursor'], p) }}>
+              <img class="w-full" src="{{ p.thumbnail.src|resize(300) }}" alt="listing featured image" />
+              {{ fn(['StarterSite', 'gallery'], p) }}
+            </div>
+            <a href="tel:{{ fn('str_replace', ' ', '', phone) }}" class="button bg-light w-full text-base text-center">Llamar ahora</a>
+            <button class="button bg-light w-full text-base">Solicitar información</a>
           </div>
-          <h5>{{ p.post_title }}</h5>
-          <p>{{ p.meta('_sq_ft') }} m2</p>
-          <div class="flex gap-2">
-            <span>Habitaciones: {{ p.meta('_bedrooms') }}</span>
-            <span>Pisos: {{ p.meta('_stories') }}</span>
-            <span>Cocheras: {{ p.meta('_garages') }}</span>
+          <div>
+            <h5>{{ p.post_title }}</h5>
+            <div class="flex flex-col gap-2">
+              <span>Ciudad: {{ p.meta('_city') }}</span>
+              <span>Tipo: {{ p.meta('_type') }}</span>
+              <span>Área: {{ p.meta('_sq_ft') }} m<sup>2</sup></span>
+              <span>Área construida: {{ p.meta('_built_sq_ft') }} m<sup>2</sup></span>
+              <span>Habitaciones: {{ p.meta('_bedrooms') }}</span>
+              <span>Pisos: {{ p.meta('_stories') }}</span>
+              <span>Cocheras: {{ p.meta('_garages') }}</span>
+            </div>
           </div>
-          <a href="tel:{{ fn('str_replace', ' ', '', phone) }}" class="button bg-light w-full text-base">Contactar para más detalles</a>
         </div>
       {% endfor %}
     </div>
