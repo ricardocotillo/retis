@@ -60,3 +60,22 @@ setTimeout(() => {
   const b = document.querySelector('.banner-text')
   b?.classList.add('fadein')
 }, 3000)
+
+const states = document.querySelectorAll('.state')
+const stateModal = document.querySelector('#state-modal')
+const propertyTypes = document.querySelectorAll('.property-type')
+let state = null
+
+states?.forEach(s => {
+  s.addEventListener('click', () => {
+    state = s.id
+    stateModal?.showModal()
+  })
+})
+
+propertyTypes?.forEach(p => {
+  p.addEventListener('click', () => {
+    const type = p.classList.item(p.classList.length - 1)
+    location.href = `/location/${state}/?type=${type}`
+  })
+})
