@@ -138,6 +138,14 @@ class StarterSite extends Site {
 			'show_in_rest'	=> true,
 		]);
 		$section->register();
+
+		$request = new PostType('request');
+		$request->icon('dashicons-media-document');
+		$request->options([
+			'supports'		=> ['title'],
+			'show_in_rest'	=> true,
+		]);
+		$request->register();
 	}
 	/** This is where you can register custom taxonomies. */
 	public function retis_init() {
@@ -172,7 +180,7 @@ class StarterSite extends Site {
 	 * @param WP_Post $post
 	 */
 	public function retis_use_gutenberg($ok, $post) {
-		if ($post->post_type == 'listing') return false;
+		if ($post->post_type == 'listing' || $post->post_type == 'request') return false;
 		return $ok;
 	}
 
@@ -201,6 +209,7 @@ class StarterSite extends Site {
 		require_once __DIR__ . '/fields/theme_options.php';
 		require_once __DIR__ . '/fields/front_page_fields.php';
 		require_once __DIR__ . '/fields/listing_fields.php';
+		require_once __DIR__ . '/fields/request_fields.php';
 		require_once __DIR__ . '/blocks/hero.php';
 		require_once __DIR__ . '/blocks/application_form.php';
 	}
