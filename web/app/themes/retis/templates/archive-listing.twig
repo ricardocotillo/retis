@@ -15,9 +15,15 @@
           <div class="w-1/2">
             <h5 title="{{ p.post_title }}" class="truncate">{{ p.post_title }}</h5>
             <div class="flex flex-col gap-2">
-              <span>Ciudad: {{ p.meta('_city') }}</span>
-              <span>Tipo: {{ p.meta('_type') }}</span>
-              <span>Área: {{ p.meta('_sq_ft') }} m<sup>2</sup></span>
+              {% if p.meta('_city') %}
+                <span>Ciudad: {{ p.meta('_city') }}</span>
+              {% endif %}
+              {% if p.meta('_type') %}
+                <span>Tipo: {{ p.meta('_type') }}</span>
+              {% endif %}
+              {% if p.meta('_sq_ft') %}
+                <span>Área: {{ p.meta('_sq_ft') }} m<sup>2</sup></span>
+              {% endif %}
               {% if p.meta('_built_sq_ft') %}
                 <span>Área construida: {{ p.meta('_built_sq_ft') }} m<sup>2</sup></span>
               {% endif %}
