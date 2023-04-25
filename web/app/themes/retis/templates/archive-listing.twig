@@ -4,16 +4,16 @@
     <div class="grid grid-cols-1 gap-5 md:grid-cols-2 container mx-auto">
       {% for p in posts %}
         <div class="p-4 flex gap-2 bg-white rounded-sm">
-          <div class="flex flex-col gap-2">
+          <div class="flex flex-col gap-2 w-1/2">
             <div {{ fn(['StarterSite', 'cursor'], p) }}>
-              <img class="w-full" src="{{ p.thumbnail.src|resize(300) }}" alt="listing featured image" />
+              <img class="w-full aspect-video object-cover" src="{{ p.thumbnail.src|resize(300) }}" alt="listing featured image" />
               {{ fn(['StarterSite', 'gallery'], p) }}
             </div>
             <a href="tel:{{ fn('str_replace', ' ', '', phone) }}" class="button bg-light w-full text-base text-center">Llamar ahora</a>
             <button data-id="{{ p.id }}" class="button bg-light w-full text-base request-btn">Solicitar información</a>
           </div>
-          <div>
-            <h5>{{ p.post_title }}</h5>
+          <div class="w-1/2">
+            <h5 title="{{ p.post_title }}" class="truncate">{{ p.post_title }}</h5>
             <div class="flex flex-col gap-2">
               <span>Ciudad: {{ p.meta('_city') }}</span>
               <span>Tipo: {{ p.meta('_type') }}</span>

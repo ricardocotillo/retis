@@ -15,8 +15,12 @@ if (isset($_GET['type']) && $_GET['type'] != '') {
                 'field'     => 'slug',
                 'terms'     => $listing_cat,
             ],
+            [
+                'taxonomy'  => 'location',
+                'field'     => 'slug',
+                'terms'     => explode('/', $_SERVER['REQUEST_URI'])[2],
+            ]
         ]
     ]);
 }
-
 Timber::render( $templates, $context );
