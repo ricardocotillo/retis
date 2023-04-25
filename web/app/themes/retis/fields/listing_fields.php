@@ -9,6 +9,7 @@ Container::make( 'post_meta', 'Especificaciones' )
     Field::make('text', 'type'),
     Field::make('text', 'price')
       ->set_attribute('type', 'number'),
+    Field::make( 'date', 'built_in' ),
     Field::make('text', 'sq_ft', 'Area')
       ->set_attribute('type', 'number'),
     Field::make('text', 'built_sq_ft', 'Built Area')
