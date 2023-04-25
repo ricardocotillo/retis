@@ -84,8 +84,8 @@ const requestBtns = document.querySelectorAll('.request-btn')
 const requestModal = document.querySelector('#request-modal')
 const propertyInput = document.querySelector('#property-input')
 const requestForm = document.querySelector('#request-form')
-const success = requestModal.querySelector('.success')
-const error = requestModal.querySelector('.error')
+const success = requestModal?.querySelector('.success')
+const error = requestModal?.querySelector('.error')
 
 requestBtns?.forEach(r => {
   r.addEventListener('click', () => {
@@ -103,12 +103,12 @@ requestForm?.addEventListener('submit', async e => {
     body: formData,
   })
   if (res.status === 200) {
-    success.classList.remove('hidden')
-    setTimeout(() => success.classList.add('hidden'), 3000)
+    success?.classList.remove('hidden')
+    setTimeout(() => success?.classList.add('hidden'), 3000)
     requestForm.reset()
     requestModal.close()
   } else {
-    error.classList.remove('hidden')
-    setTimeout(() => error.classList.add('hidden'), 3000)
+    error?.classList.remove('hidden')
+    setTimeout(() => error?.classList.add('hidden'), 3000)
   }
 })
