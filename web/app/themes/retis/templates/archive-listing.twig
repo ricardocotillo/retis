@@ -10,7 +10,7 @@
               {{ fn(['StarterSite', 'gallery'], p) }}
             </div>
             <a href="tel:{{ fn('str_replace', ' ', '', phone) }}" class="button bg-light w-full text-base text-center">Llamar ahora</a>
-            <button class="button bg-light w-full text-base">Solicitar información</a>
+            <button class="button bg-light w-full text-base request-btn">Solicitar información</a>
           </div>
           <div>
             <h5>{{ p.post_title }}</h5>
@@ -30,4 +30,25 @@
     <dialog x-ref="popup" class="p-0 bg-slate-900 popup-gallery">
     </dialog>
   </div>
+  <dialog id="request-modal" class="rounded-md bg-gray-100">
+    <h2 class="mb-4 text-center">Solicitar información</h2>
+    <form action="" class="flex flex-col gap-4">
+      <input type="hidden" name="property">
+      <div class="flex gap-2">
+        <input type="text" name="first_name" id="first-name" placeholder="Nombre">
+        <input type="text" name="last_name" id="last-name" placeholder="Apellido">
+      </div>
+      <div class="flex gap-2">
+        <input type="email" name="email" id="email" placeholder="Email">
+        <input type="tel" name="phone" id="phone" placeholder="Teléfono">
+      </div>
+      <h4>Preferencia de teléfono</h4>
+      <div class="flex flex-col gap-2">
+        <label class="cursor-pointer" for="phone-preference-1"><input class="mr-2" type="radio" name="phone_preference" id="phone-preference-1" /> Prefiero un TXT</label>
+        <label class="cursor-pointer" for="phone-preference-2"><input class="mr-2" type="radio" name="phone_preference" id="phone-preference-2" /> Prefiero una llamada</label>
+      </div>
+      <textarea name="message" id="message" rows="5"></textarea>
+      <button class="button bg-primary text-white">Enviar</button>
+    </form>
+  </dialog>
 {% endblock %}

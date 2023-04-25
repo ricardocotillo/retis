@@ -79,3 +79,12 @@ propertyTypes?.forEach(p => {
     location.href = `/location/${state}/?type=${type}`
   })
 })
+
+const requestBtns = document.querySelectorAll('.request-btn')
+const requestModal = document.querySelector('#request-modal')
+
+requestBtns?.forEach(r => {
+  r.addEventListener('click', () => {
+    requestModal?.showModal()
+  })
+})
