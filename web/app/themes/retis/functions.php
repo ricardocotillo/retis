@@ -88,12 +88,17 @@ class StarterSite extends Site {
 	}
 
 	public function retis_routes() {
-		Router::map(['GET'], 'listing_content/{id}/', function (RouteParams $params, Request $request) {
+		Router::map(['GET'], 'listing_content/{id}/', function(RouteParams $params, Request $request) {
 			$context = Timber::context();
 			$post = new Post($params->id);
 			$gallery = carbon_get_post_meta($post->ID, 'retis_gallery');
 			$context['gallery'] = $gallery;
 			Timber::render('partial/gallery.twig', $context);
+		});
+
+		Router::map(['POST'], 'request-info/', function(RouteParams $params, Request $request) {
+			$d = $request->request->all();
+			error_log(print_r($d, true));
 		});
 	}
 	/** This is where you can register custom post types. */

@@ -82,9 +82,11 @@ propertyTypes?.forEach(p => {
 
 const requestBtns = document.querySelectorAll('.request-btn')
 const requestModal = document.querySelector('#request-modal')
+const propertyInput = document.querySelector('#property-input')
 
 requestBtns?.forEach(r => {
   r.addEventListener('click', () => {
     requestModal?.showModal()
+    propertyInput.value = r.dataset.id
   })
 })
