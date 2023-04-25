@@ -32,7 +32,7 @@
   </div>
   <dialog id="request-modal" class="rounded-md bg-gray-100">
     <h2 class="mb-4 text-center">Solicitar información</h2>
-    <form method="post" action="/request-info/" class="flex flex-col gap-4">
+    <form id="request-form" method="post" action="/request-info/" class="flex flex-col gap-4">
       <input id="property-input" type="hidden" name="property" value="">
       <div class="flex gap-2">
         <input type="text" name="first_name" id="first-name" placeholder="Nombre" required>
@@ -50,5 +50,7 @@
       <textarea name="message" id="message" rows="5" requied></textarea>
       <button class="button bg-primary text-white">Enviar</button>
     </form>
+    <div class="bg-green-500 text-white w-full px-4 py-2 mt-4 text-center hidden success">Mensaje enviado correctamente</div>
+    <div class="bg-red-500 text-white w-full px-4 py-2 mt-4 text-center hidden error">Sucedió un error. Por favor, intentarlo más tarde</div>
   </dialog>
 {% endblock %}

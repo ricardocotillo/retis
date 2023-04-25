@@ -83,10 +83,30 @@ propertyTypes?.forEach(p => {
 const requestBtns = document.querySelectorAll('.request-btn')
 const requestModal = document.querySelector('#request-modal')
 const propertyInput = document.querySelector('#property-input')
+const requestForm = document.querySelector('#request-form')
+const success = requestModal.querySelector('.success')
+const error = requestModal.querySelector('.error')
 
 requestBtns?.forEach(r => {
   r.addEventListener('click', () => {
     requestModal?.showModal()
     propertyInput.value = r.dataset.id
   })
+})
+
+requestForm?.addEventListener('submit', async e => {
+  e.preventDefault()
+  const url = requestForm.getAttribute('action')
+  const formData = new FormData(requestForm)
+  const res = await fetch(url, {
+    method: 'POST',
+    body: formData,
+  })
+  if (res.status === 200) {
+    success.classList.remove('hidden')
+    setTimeout(() => success.classList.add('hidden'), 3000)
+  } else {
+    error.classList.remove('hidden')
+    setTimeout(() => error.classList.add('hidden'), 3000)
+  }
 })
