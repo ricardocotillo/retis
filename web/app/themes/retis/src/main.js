@@ -105,6 +105,8 @@ requestForm?.addEventListener('submit', async e => {
   if (res.status === 200) {
     success.classList.remove('hidden')
     setTimeout(() => success.classList.add('hidden'), 3000)
+    requestForm.reset()
+    requestModal.close()
   } else {
     error.classList.remove('hidden')
     setTimeout(() => error.classList.add('hidden'), 3000)
