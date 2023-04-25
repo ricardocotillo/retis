@@ -27,6 +27,9 @@
               {% if p.meta('_built_sq_ft') %}
                 <span>Área construida: {{ p.meta('_built_sq_ft') }} m<sup>2</sup></span>
               {% endif %}
+              {% if p.meta('_built_in') %}
+                <span>Construida en: {{ p.meta('_built_in') }}</span>
+              {% endif %}
               {% if p.meta('_bedrooms') %}
                 <span>Habitaciones: {{ p.meta('_bedrooms') }}</span>
               {% endif %}
