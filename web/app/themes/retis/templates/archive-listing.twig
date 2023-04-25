@@ -54,11 +54,11 @@
     <h2 class="mb-4 text-center">Solicitar información</h2>
     <form id="request-form" method="post" action="/request-info/" class="flex flex-col gap-4">
       <input id="property-input" type="hidden" name="property" value="">
-      <div class="flex gap-2">
+      <div class="flex flex-col md:flex-row gap-2">
         <input type="text" name="first_name" id="first-name" placeholder="Nombre" required>
         <input type="text" name="last_name" id="last-name" placeholder="Apellido" required>
       </div>
-      <div class="flex gap-2">
+      <div class="flex flex-col md:flex-row gap-2">
         <input type="email" name="email" id="email" placeholder="Email" required>
         <input type="tel" name="phone" id="phone" placeholder="Teléfono" required>
       </div>
