@@ -16,6 +16,8 @@ Container::make( 'post_meta', 'Especificaciones' )
       ->set_attribute('type', 'number'),
     Field::make('text', 'bedrooms')
       ->set_attribute('type', 'number'),
+    Field::make('text', 'bathrooms')
+      ->set_attribute('type', 'number'),
     Field::make('text', 'garages')
       ->set_attribute('type', 'number'),
     Field::make('text', 'stories')
