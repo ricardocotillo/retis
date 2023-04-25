@@ -98,7 +98,18 @@ class StarterSite extends Site {
 
 		Router::map(['POST'], 'request-info/', function(RouteParams $params, Request $request) {
 			$d = $request->request->all();
-			error_log(print_r($d, true));
+			$post_title = $d['first_name'] . ' ' . $d['last_name'];
+			$post_id = wp_insert_post([
+				'post_type'		=> 'request',
+				'post_title'	=> $post_title,
+				'post_status'	=> 'publish',
+			]);
+			$fields = ['property', 'first_name', 'last_name', 'email', 'phone', 'phone_preference', 'message'];
+			foreach ($fields as $f) {
+				carbon_set_post_meta($post_id, $f, $d[$f]);
+			}
+			$response = new Response();
+			$response->send();
 		});
 	}
 	/** This is where you can register custom post types. */
